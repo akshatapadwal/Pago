@@ -1,0 +1,126 @@
+<div *ngIf="information" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">{{information.firstName}} {{information.lastName}}</h1>
+
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+
+      <a routerLink="/admin/contact" class="btn btn-sm btn-secondary mr-2 shadow-sm">
+        <i class="fas fa-chevron-left"></i>
+        retour
+      </a>
+
+      <button class="btn btn-sm btn-primary mr-2 shadow-sm">create an opportunity</button>
+      <button class="btn btn-sm btn-success mr-2 shadow-sm">create a quote</button>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="row" *ngIf="information">
+
+  <div class="col-lg-4">
+
+    <div class="list-group shadow-sm" *ngIf="information">
+      <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between mb-2">
+          <h5 class="mb-1">Information</h5>
+        </div>
+        <p class="mb-1">
+          Entreprise:
+          <b>{{information.company}}</b>
+        </p>
+        <p class="mb-1">
+          Telephone:
+          <b> {{information.telephone}}</b>
+        </p>
+        <p class="mb-1">
+          Email:
+          <b> {{information.email}}</b>
+        </p>
+      </a>
+    </div>
+
+    <div class="list-group mt-3 mb-3 shadow-sm" *ngIf="information">
+      <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Adresse du contact</h5>
+        </div>
+        <p class="mb-1">adresse: {{information.address}}</p>
+        <p class="mb-1">zip: {{information.zip}}</p>
+        <p class="mb-1">city: {{information.city}}</p>
+        <p class="mb-1">pays: {{information.pays}}</p>
+      </a>
+    </div>
+
+    <ul class="list-group mt-3 shadow-sm" *ngIf="opportunity">
+      <li class="list-group-item d-flex justify-content-between align-items-center">total opportunitys:
+        <b>{{opportunity.count | currency:'EUR'}}</b></li>
+    </ul>
+
+    <ul class="list-group mt-3 shadow-sm" *ngIf="quote">
+      <li class="list-group-item d-flex justify-content-between align-items-center">total quote:
+        <b>{{quote.count | currency:'EUR'}}</b></li>
+    </ul>
+
+  </div>
+
+  <div class="col-lg-8">
+
+    <div class="card shadow-sm" *ngIf="opportunity && opportunity.opp.length > 0">
+      <div class="card-header bg-info text-white">List of opportunities</div>
+      <div class="card-body">
+        <table class="table table-bordered table-hover text-center">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">amount</th>
+            <th scope="col">steps</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of opportunity.opp" [ngClass]="{
+          'text-success': item.step === 'profit',
+          'text-warning': item.step === 'proposal',
+          'text-primary': item.step === 'In progress',
+          'text-danger': item.step === 'loss'}">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.title}}</td>
+            <td>{{item.amount | currency:'EUR'}}</td>
+            <td>{{item.step}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card  shadow-sm mt-3" *ngIf="quote && quote.quote.length > 0">
+      <div class="card-header bg-info text-white">List of quotes</div>
+      <div class="card-body">
+        <table class="table table-bordered table-hover text-center">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">amount</th>
+            <th scope="col">action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of quote.quote">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.total | currency:'EUR'}}</td>
+            <td>
+              <button class="btn btn-outline-success btn-sm">transformer</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>

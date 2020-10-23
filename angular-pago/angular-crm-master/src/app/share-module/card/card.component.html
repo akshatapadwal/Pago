@@ -1,0 +1,32 @@
+<div class="card shadow-sm mt-2 mb-2"
+     [ngClass]="{
+      'wait-border': item.step === 'In progress',
+      'proposal-border': item.step === 'proposal',
+      'win-border': item.step === 'profit',
+      'loose-border': item.step === 'loss'
+     }">
+
+  <div class="card-body">
+    <div class="row">
+
+      <div class="col-lg-9">
+        <p class="card-title"><b>#{{item.id}}</b> {{item.title}}</p>
+        <p class="card-text"> Pay: {{ item.amount | currency:'EUR'}} </p>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="tool text-center p-2">
+          <i class="fas fa-caret-down"></i>
+            <div class="tool-container">
+              <ul class="list-group">
+                <li class="list-group-item" (click)="view(item.id)">View</li>
+                <li class="list-group-item" (click)="remove(item.id)">Remove</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

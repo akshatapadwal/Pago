@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Activity</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button (click)="showModal = true" class="btn btn-sm btn-success shadow-sm">New Activity</button>
+    </div>
+  </div>
+</div>
+
+<app-create [modal]="showModal" (closeProd)="closeModal($event)" (saveProd)="saveProduct($event)"></app-create>
+
+<div class="container-fluid" *ngIf="product">
+  <div class="row">
+    <div class="col-lg-3"*ngFor="let item of product">
+
+      <div class="card shadow">
+        <div class="card-body">
+          <h4><b>#{{item.id}}</b> {{item.name}}</h4>
+          <p class="card-text">{{item.prix |  currency:'EUR'}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

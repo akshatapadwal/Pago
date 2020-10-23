@@ -1,0 +1,107 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Table</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-secondary">
+        <i class="fas fa-cog"></i>
+      </button>&nbsp;
+      <button (click)="form = !form" class="btn btn-sm btn-outline-secondary">
+        <i class="fas fa-plus"></i>
+      </button>&nbsp;
+    </div>
+  </div>
+</div>
+
+<section class="board_opportunity">
+
+  <div class="card border-top-0" [ngClass]="{'hide': !form, show: form}">
+    <div class="card-body">
+      <form [formGroup]="opportunityForm" (submit)="save()" class="mt-4 mb-4">
+        <div class="form-row">
+
+          <div class="col-sm-3 mb-3">
+            <div class="form-group">
+              <label for="contact">detail</label>
+              <select type="text" id="contact" [formControl]="contact" class="form-control">
+                <option *ngFor="let item of informations"
+                        [value]="item.id">{{item.firstName}} {{item.lastName}}</option>
+              </select>
+              <small *ngIf="formSubmitAttempt && contact.errors" class="form-text text-danger">
+                opportunity
+              </small>
+            </div>
+          </div>
+
+          <div class="col-sm-3 mb-3">
+            <div class="form-group">
+              <label for="title">First Name </label>
+              <input type="text" id="title" [formControl]="title" class="form-control" placeholder="First Name">
+              <small *ngIf="formSubmitAttempt && title.errors" class="form-text text-danger">
+                opportunity
+              </small>
+            </div>
+          </div>
+
+          <div class="col-sm-3 mb-3">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" id="description" [formControl]="description" class="form-control"
+                     placeholder="description">
+            </div>
+          </div>
+
+          <div class="col-sm-3 mb-3">
+            <div class="form-group">
+              <label for="amount">amount</label>
+              <input type="number" id="amount" [formControl]="amount" class="form-control" placeholder="amount">
+              <small *ngIf="formSubmitAttempt && amount.errors" class="form-text text-danger">
+                opportunity
+              </small>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <input type="submit" class="btn btn-success" value="valider"> &nbsp;
+            <input (click)="form = !form" type="submit" class="btn btn-dark" value="anuler">
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="board_content">
+    <div class="row flex-nowrap mb-4">
+
+      <div class="col-sm-3 pr-4">
+        <p>In progress ({{opportunity.length}})</p>
+        <div class="col-kanban border bg-white p-3">
+          <app-card (opportunity)="redirect($event)" (delete)="remove($event)" *ngFor="let item of opportunity;" [item]="item"></app-card>
+        </div>
+      </div>
+
+      <div class="col-sm-3 pr-4">
+        <p>Review ({{proposal.length}})</p>
+        <div class="col-kanban border bg-white p-3">
+          <app-card (opportunity)="redirect($event)" (delete)="remove($event)" *ngFor="let item of proposal" [item]="item"></app-card>
+        </div>
+      </div>
+
+      <div class="col-sm-3 pr-4">
+        <p>Assement ({{profit.length}})</p>
+        <div class="col-kanban border bg-white p-3">
+          <app-card (opportunity)="redirect($event)" (delete)="remove($event)" *ngFor="let item of profit" [item]="item"></app-card>
+        </div>
+      </div>
+
+      <div class="col-sm-3 pr-4">
+        <p>Final ({{loss.length}})</p>
+        <div class="col-kanban border bg-white p-3">
+          <app-card (opportunity)="redirect($event)" (delete)="remove($event)" *ngFor="let item of loss" [item]="item"></app-card>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>

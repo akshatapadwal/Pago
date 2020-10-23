@@ -1,0 +1,84 @@
+{
+  "contact": [
+    {
+      "firstName": "locchi",
+      "lastName": "cedric",
+      "telephone": "0674511775",
+      "email": "cedric@adigit.com",
+      "company": "adigit",
+      "address": "147 avenue sainte marguerite",
+      "pays": "France",
+      "city": "Nice",
+      "zip": "06200",
+      "opportunity": [],
+      "invoices": [],
+      "quote": [],
+      "id": 3
+    }
+  ],
+  "opportunity": [
+    {
+      "contactId": "3",
+      "title": "Job",
+      "description": "description !!",
+      "amount": 120,
+      "step": "In progress",
+      "id": 1,
+      "phase": 1
+    }
+  ],
+  "invoice": [
+    {
+      "id": 1,
+      "contactId": 1,
+      "name": "facture 1",
+      "total": 100
+    }
+  ],
+  "line": [
+    {
+      "id": 1,
+      "type": "invoice",
+      "invoiceId": 1,
+      "quoteId": null
+    }
+  ],
+  "quote": [
+    {
+      "id": 1,
+      "contactId": 1,
+      "name": "Quote 1",
+      "total": 100
+    }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "name": "typicode",
+      "prix": 100
+    },
+    {
+      "name": "test",
+      "prix": "100",
+      "id": 2
+    },
+    {
+      "name": "ABC 3",
+      "prix": "1000",
+      "id": 3
+    },
+    {
+      "name": "ABC 3",
+      "prix": "200",
+      "id": 4
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "username": "abc@gmail.com",
+      "password": "12345",
+      "preferences": []
+    }
+  ]
+}
